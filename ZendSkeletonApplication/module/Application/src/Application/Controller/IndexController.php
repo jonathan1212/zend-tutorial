@@ -43,6 +43,7 @@ class IndexController extends AbstractActionController
 
     public function addAction()
     {
+        $this->params();
         $userForm = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\UserForm');
        
     	$repository = $this->getEm()->getRepository('Application\Entity\User');

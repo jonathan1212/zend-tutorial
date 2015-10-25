@@ -12,9 +12,10 @@ class UserFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services         = $serviceLocator->getServiceLocator();
+        $dbAdapter 		  = $services->get('Zend\Db\Adapter\Adapter');
         $entityManager    = $services->get('Doctrine\ORM\EntityManager');
          
-        $form = new UserForm($entityManager);
+        $form = new UserForm($entityManager,$dbAdapter);
         return $form;
     }
 }
