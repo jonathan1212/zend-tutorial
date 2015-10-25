@@ -1,0 +1,66 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    protected $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="language_id", type="integer", nullable=false)
+     */
+    protected $languageId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Language")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     * })
+     */
+    protected $language;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="place_id", type="integer", nullable=false)
+     */
+    protected $placeId;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Entity\Place")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="place_id", referencedColumnName="id")
+     * })
+     */
+    protected $place;
+
+
+}
+
