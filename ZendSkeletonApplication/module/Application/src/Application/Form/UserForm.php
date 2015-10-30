@@ -8,17 +8,22 @@ use Zend\InputFilter\InputFilterProviderInterface;
 use Doctrine\ORM\EntityManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Application\Form\PlaceFieldset; 
+use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\Adapter\Adapter;
 
 class UserForm extends Form
     implements InputFilterProviderInterface
 {
     protected $entityManager;
-     
-    public function __construct(EntityManager $entityManager)
+
+    protected $adapter;
+
+    public function __construct(EntityManager $entityManager, AdapterInterface $dbAdapter)
     {
         parent::__construct('user');
  
-        $this->entityManager = $entityManager;       
+        $this->entityManager = $entityManager;
+        $this->adapter = $dbAdapter;       
     }
      
     public function init()
@@ -53,6 +58,17 @@ class UserForm extends Form
             'type' => 'text'
         ));
 
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'sample',
+            'tabindex' => 2,
+            'options' => array(
+                    'label' => 'Language',
+                    'empty_option' => 'Please select a language',
+                    'value_options' => $this->getOptionsForSelect(),
+            )
+        ));
+
         $this->addPlace();
 
         $this->add(array(
@@ -79,5 +95,20 @@ class UserForm extends Form
         //$labelFieldset->setLabelAttributes(array('class' => 'control-label'));
 
         $this->add($placeFieldset);
+    }
+
+    private function getOptionsForSelect()
+    {
+        $dbAdapter = $this->adapter;
+        $sql       = 'SELECT id,language FROM language ORDER BY language ASC';
+        $statement = $dbAdapter->query($sql);
+        $result    = $statement->execute();
+
+        $selectData = array();
+
+        foreach ($result as $res) {
+            $selectData[$res['id']] = $res['language'];
+        }
+        return $selectData;
     }
 }

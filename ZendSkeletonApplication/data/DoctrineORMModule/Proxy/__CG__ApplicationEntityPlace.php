@@ -64,10 +64,10 @@ class Place extends \Application\Entity\Place implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Place' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\Place' . "\0" . 'place');
+            return array('__isInitialized__', 'id', 'place', 'country');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Place' . "\0" . 'id', '' . "\0" . 'Application\\Entity\\Place' . "\0" . 'place');
+        return array('__isInitialized__', 'id', 'place', 'country');
     }
 
     /**
@@ -208,6 +208,28 @@ class Place extends \Application\Entity\Place implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlace', array());
 
         return parent::getPlace();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountry($country)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountry', array($country));
+
+        return parent::setCountry($country);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountry()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountry', array());
+
+        return parent::getCountry();
     }
 
 }

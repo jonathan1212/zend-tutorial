@@ -81,4 +81,40 @@ class IndexController extends AbstractActionController
 
         return array('form' => $userForm);
     }
+
+    public function addplaceAction()
+    {
+        $placeForm = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\PlaceForm');
+        
+        $repository = $this->getEm()->getRepository('Application\Entity\Place');
+        $id =  1; //(int)$this->params()->fromQuery('id');
+        $place = $repository->find($id);
+        //$user = new User();
+        
+        $request = $this->getRequest();
+        
+        $placeForm->bind($place);
+
+        var_dump($place);
+
+        if ($request->isPost()) {
+
+            $placeForm->setData($request->getPost());
+
+            if ($placeForm->isValid()) {
+                var_dump('expression');
+                exit;
+                var_dump($place);
+                exit;
+                //$this->getEm()->persist($place);
+                //$this->getEm()->flush();
+
+                // Redirect to list of albums
+                return $this->redirect()->toRoute('/application/index/add');
+             }
+
+        }
+
+        return array('form' => $placeForm);
+    }
 }

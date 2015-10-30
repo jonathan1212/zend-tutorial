@@ -34,7 +34,9 @@ return array(
     ),
     'form_elements' => array(
         'factories' => array(
-            'Application\Form\UserForm' => 'Application\Factory\Form\UserFormFactory',  
+            'Application\Form\UserForm' => 'Application\Factory\Form\UserFormFactory', 
+            'Application\Form\PlaceForm' => 'Application\Factory\Form\PlaceFormFactory',  
+ 
         ),
     ),
     'router' => array(
