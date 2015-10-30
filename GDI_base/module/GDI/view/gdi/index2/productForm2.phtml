@@ -1,0 +1,45 @@
+<?php
+$form->setAttribute('action', $this->url('home'))
+    ->prepare();
+
+echo $this->form()->openTag($form);
+
+//$product = $form->get('marketProductJurisdiction');
+
+$jurisdictionProduct = $form;//->get('jurisdictionProduct');
+
+//var_dump($jurisdictionProduct);
+//exit;
+//echo $this->formLabel($jurisdictionProduct->get(''));
+foreach ($marketJurisdictions as $marketJurisdiction)
+{
+    $jurisAbbr = $marketJurisdiction->getJurisdiction()->getJurisdictionAbbr();
+
+    echo $this->formRow($jurisdictionProduct->get('eSubmissionDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('eApprovalDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('eReleaseDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('eLaunchDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('eRegulatorDate'.$jurisAbbr));
+
+
+    echo $this->formRow($jurisdictionProduct->get('rSubmissionDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('rApprovalDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('rReleaseDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('rLaunchDate'.$jurisAbbr));
+    echo $this->formRow($jurisdictionProduct->get('rRegulatorDate'.$jurisAbbr));
+
+}
+
+
+
+
+//echo $this->formRow($product->get('price'));
+//echo $this->formCollection($product->get('jurisdictionProducts'));
+
+/* $brand = $product->get('brand');
+
+ echo $this->formRow($brand->get('name'));
+ echo $this->formRow($brand->get('url'));
+*/
+
+echo $this->form()->closeTag();

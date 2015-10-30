@@ -1,0 +1,85 @@
+<?php $paging = $this->paginationHelper($marketproductList, $page, '/product-information', 10); ?>
+
+<table class="table table-hover table-condensed">
+	<tbody>
+		<tr>
+			<th>Edit</th>
+          	<th>Active</th>
+          	<th>Control No.</th>
+          	<th>Market</th>
+          	<th>Platform</th>
+          	<th>Category</th>
+          	<th>Develop in</th>
+          	<th>Type</th>
+          	<th>Target</th>
+          	<th>Overview</th>
+          	<th>Characteristics</th>
+          	<th>Title</th>
+          	<th>Year &amp; Quarter</th>
+          	<th>Development Start</th>
+          	<th>Development Finished</th>
+          	<th>Submission</th>
+          	<th>Approval</th>
+		</tr>
+
+		<?php foreach ($marketproductList as $list): ?>
+				<?php $inputtab = $getEntityManager->getRepository('GDI\Entity\InputProductTab')->findOneBy(array('market_product_id' => $list->getMarketProductId() )); ?>
+				<?php $editUrl = $inputtab ? "/input-product-information/{$inputtab->getId()}?controlno={$inputtab->getControlNo()}&tabno={$inputtab->getTabNo()}" : ''; ?>
+			<tr>
+				<td>
+					<a href="<?php echo $editUrl ?>" title="Edit"><i class="fa fa-fw fa-pencil-square-o"></i></a>  
+				</td>
+
+				<td><span title="diactivated" class="text-gray"><i class="fa fa-circle "></i></span></td>
+
+				<td><span class="label bg-aqua"> <?php echo $list->getProduct()->getControlId() ?> </span> </td>
+				<td><?php echo $list->getMarket()->getMarketName() ?></td>
+				<td><?php echo $list->getPlatform()->getPlatformName() ?></td>
+				<td><?php echo $list->getGameCategory()->getGameCategoryName() ?></td>
+				<td><?php echo $list->getBranch()->getBranchName() ?></td>
+				<td><?php echo $list->getType() ?></td>
+				<td><?php echo $list->getTarget() ?></td>
+				<td><?php echo $list->getOverview() ?></td>
+				<td><?php echo $list->getCharacteristics() ?></td>
+				<td><?php echo $list->getTitle() ?></td>
+				<td> year and quarter </td>
+
+				<td>
+					<?php $devstart = $list->getDevStartStatus(); ?>	
+					<span class="label <?php echo $devstart['class'] ?>">
+					<?php echo $devstart['date']; ?>
+					</span>
+				</td>
+				
+				<td>
+					<?php $devfinish = $list->getDevFinishStatus(); ?>	
+					<span class="label <?php echo $devfinish['class'] ?>">
+					<?php echo $devfinish['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $submission = $list->getSubmission(); ?>	
+					<span class="label <?php echo $submission['class'] ?>">
+					<?php echo $submission['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $approval = $list->getApproval(); ?>	
+					<span class="label <?php echo $approval['class'] ?>">
+					<?php echo $approval['date']; ?>
+					</span>
+				</td>
+				
+			</tr>
+
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<div class="paging">
+    
+</div>
+
+<?php echo $paging; ?>

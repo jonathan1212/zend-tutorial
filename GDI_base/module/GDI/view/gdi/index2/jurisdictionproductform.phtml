@@ -1,0 +1,124 @@
+<?php $jurisdictionProduct = $form;//->get('jurisdictionProduct'); ?>
+
+<?php foreach ($marketJurisdictions as $key => $marketJurisdiction): ?>
+	
+	<?php $jurisAbbr = $marketJurisdiction->getJurisdiction()->getJurisdictionAbbr(); ?>
+
+	<div class="row">
+	    <div class="box-header with-border">
+	        <h3 class="box-title"><?php echo $jurisAbbr ?></h3>
+	    </div>
+	    <div class="col-md-6">
+	        <div class="box-body">
+	            <div class="form-group">
+	                <label class="col-sm-4" for="submission-est"><?php echo $this->translate('Submission') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+                	    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][eSubmissionDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][eSubmissionDate]")); ?>
+
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="approval-est"><?php echo $this->translate('Approval') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+                	    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][eApprovalDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][eApprovalDate]")); ?>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="master-release-est"><?php echo $this->translate('Master Release') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+                	    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][eReleaseDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][eReleaseDate]")); ?>
+	                </div>
+	            </div>
+
+	            <div class="form-group">
+	                <label class="col-sm-4" for="launch-est"><?php echo $this->translate('Launch') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+						<?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][eLaunchDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][eLaunchDate]")); ?>	                
+                	</div>
+	            </div>
+
+	            <div class="form-group">
+	                <label class="col-sm-4" for="launch-est"><?php echo $this->translate('Regulator') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+						<?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][eRegulatorDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][eRegulatorDate]")); ?>	                
+                	</div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-md-6">
+	        <div class="box-body">
+	            <div class="form-group">
+	                <label class="col-sm-4" for="submission-rest"><?php echo $this->translate('Submission') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+	                    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][rSubmissionDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][rSubmissionDate]")); ?>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="approval-rest"><?php echo $this->translate('Approval') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+	                    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][rApprovalDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][rApprovalDate]")); ?>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="master-release-rest"><?php echo $this->translate('Master Release') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+	                    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][rReleaseDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][rReleaseDate]")); ?>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="launch-rest"><?php echo $this->translate('Launch') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+	                    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][rLaunchDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][rLaunchDate]")); ?>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <label class="col-sm-4" for="launch-rest"><?php echo $this->translate('Regulator') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+	                <div class="input-group col-sm-8">
+	                    <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                    </div>
+	                    <?php echo $this->formInput($form->get("jurs_prod[$jurisAbbr][rRegulatorDate]")); ?>
+                		<?php echo $this->formElementErrors($form->get("jurs_prod[$jurisAbbr][rRegulatorDate]")); ?>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+<?php endforeach; ?>

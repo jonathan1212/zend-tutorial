@@ -1,0 +1,184 @@
+  <!-- Le styles -->
+<?php $this->headLink()
+    ->prependStylesheet('//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css');
+ ?>
+<!-- script -->  
+<?php
+ $this->headScript()
+    ->appendFile ('//cdn.jsdelivr.net/momentjs/latest/moment.min.js')
+        ->appendFile ('//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js')
+       ;
+ ?>
+ <?php $params = $this->params()->fromQuery(); ?>
+ 
+<div class="container">
+        <div class="row">
+          <h1>Master Schedule</h1>
+          <div class="box box-info">
+            <div class="box-header">
+              <h2 class="box-title">Search</h2>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body pad">
+              <form>
+                <div class="row col-md-12">
+                  
+                  <div class="form-group col-md-3">
+                    <label for="controlno" class="col-md-2">ControlNo</label> 
+                    <input type="text" class="form-control col-md-10" id="title" name="controlno" placeholder="Control No" value="">
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="title" class="col-md-2">Title</label> 
+                    <input type="text" class="form-control col-md-10" id="title" name="title" placeholder="Name" value="">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputEmail2">Platform</label> <select name="platform"
+                      class="form-control">
+                      <option value="">Select All</option>
+                      <?php foreach($platform as $each): ?>
+                        <option value ="<?php echo $each->getPlatformId() ?>"> <?php echo $each->getPlatformName() ?> </option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputEmail2">Category</label> <select name="category"
+                      class="form-control" id="sel1">
+                      <option value="">Select All</option>
+                      <?php foreach($category as $each): ?>
+                        <option value ="<?php echo $each->getGameCategoryId() ?>"> <?php echo $each->getGameCategoryName() ?> </option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="row col-md-12">
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputName2">Market</label> <select name="market"
+                      class="form-control" id="sel1">
+                      <option value="">Select All</option>
+                      <?php foreach($market as $each): ?>
+                        <option value ="<?php echo $each->getMarketId() ?>"> <?php echo $each->getMarketName() ?> </option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputEmail2">Developed in</label> <select name="branch"
+                      class="form-control" id="sel1">
+                      <option value="">Select All</option>
+                      <?php foreach($branch as $each): ?>
+                        <option value ="<?php echo $each->getBranchId() ?>"> <?php echo $each->getBranchName() ?> </option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="submission">Year & Quarter</label> 
+                    <div class="input-group col-md-12">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control daterange" name="yearQuarter" >
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row col-md-12">
+                  <div class="form-group col-md-6">
+                    <label for="submission">Submission</label> 
+                    <input type="checkbox" name="eSubmissionDate" aria-label="...">Estimated 
+                    <input type="checkbox" name="rSubmissionDate" aria-label="...">Done 
+                    <div class="input-group col-md-12">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control daterange" name="submissionDate" >
+                    </div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="approval">Approval</label>
+                    <input type="checkbox" name="eApprovalDate" aria-label="...">Estimated 
+                    <input type="checkbox" name="rApprovalDate" aria-label="...">Done 
+                    <div class="input-group col-md-12">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" name="approvalDate" class="form-control daterange">
+                    </div>
+                  </div>
+                </div>
+                <div class="row col-md-12">
+                  <div class="form-group col-md-6">
+                    <label for="submission">Master Release</label> 
+                    <input type="checkbox" name="eReleaseDate" aria-label="...">Estimated 
+                    <input type="checkbox" name="rReleaseDate" aria-label="...">Done 
+                    <div class="input-group col-md-12">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control daterange" name="releaseDate">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="approval">Launch</label>
+                    <input type="checkbox" name="eLaunchDate" aria-label="...">Estimated 
+                    <input type="checkbox" name="rLaunchDate" aria-label="...">Done 
+                    <div class="input-group col-md-12">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control daterange" name="launchDate">
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary text-right list-button">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <br/>
+      <div class="row">
+        <div class="box box-info">
+          <div class="box-header">
+            <h1 class="box-title"><span class="fa fa-gear"></span> Master Schedule </h1>
+              <small> (list)  * Estimated: 
+              <span class="text-yellow" title="yellow"><i class="fa fa-fw fa-square"></i></span> 
+              Done: <span class="text-orange" title="orange"><i class="fa fa-fw fa-square"></i></span>
+              <br/>
+              </small>
+            <br/>
+           
+            
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <?php echo $this->partial('_list.phtml', array(
+              'marketproductList' => $marketproductList ,
+              'page' => $page ,
+              'getEntityManager' => $getEntityManager
+             )); ?>
+
+          </div>
+        </div>
+      </div>  <!--container-->
+
+
+
+    <script type="text/javascript">
+      $(function() {
+          $('.daterange').daterangepicker({
+            locale: { cancelLabel: 'Clear' }  
+          });
+
+          $('.daterange').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+
+        $('.daterange').val('');
+      });
+    </script>

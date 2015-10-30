@@ -1,0 +1,180 @@
+<div class="row">
+    
+    <div class="box-header with-border">
+        <h3 class="box-title">Sales Promotion</h3>
+    </div><!-- /.box-header -->
+
+    <div class="col-md-6">
+
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-est">Artwork (SP) Upload <span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eArtworkSpDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eArtworkSpDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="gslick-est">G-Slick Upload <span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eGslickDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eGslickDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="demo-software-est">Demo Software <span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eDemoDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eDemoDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="movie-est">Movie <span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eMovieDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eMovieDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-tr-est">Artwork (TR) <span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eArtworkTrDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eArtworkTrDate')); ?>
+
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="website-est">Website<span class="small">(Estimated) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eWebsiteDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eWebsiteDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="game-img">Game Image</label>
+                <div class="col-sm-8">
+                    <?php echo $this->formFile($form->get('product')->get('gameImagePass')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('gameImagePass')); ?>
+                    <p class="help-block">Example block-level help text here.</p>
+                </div><!-- /.input group -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-rest">Artwork (SP) Upload <span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rArtworkSpDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rArtworkSpDate')); ?>
+                    
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="gslick-rest">G-Slick Upload <span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rGslickDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rGslickDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="demo-software-rest">Demo Software <span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rGslickDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rGslickDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="movie-rest">Movie <span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rMovieDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rMovieDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-tr-rest">Artwork (TR) <span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rArtworkTrDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rArtworkTrDate')); ?>
+
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="website-rest">Website<span class="small">(Result) </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rWebsiteDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rWebsiteDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="return-soft-demo">Return Demo Software</label>
+                <div class="checkbox col-sm-8">
+                    <label>
+                        <?php echo $this->formCheckbox($form->get('product')->get('isReturnDemo')); ?>
+                        <?php echo $this->formElementErrors($form->get('product')->get('isReturnDemo')); ?>
+                    </label>
+                </div>
+
+                <!--  temporary -->
+                <?php echo $this->formHidden($form->get('product')->get('createUserId')->setAttribute('value',$userInfo['user_id'])); ?>
+                <?php echo $this->formHidden($form->get('product')->get('createTime')->setAttribute('value',new \DateTime() )); ?>
+                <?php echo $this->formHidden($form->get('product')->get('updateUserId')->setAttribute('value',$userInfo['user_id'] )); ?>
+                        
+            </div>
+        </div>
+
+    </div>
+
+</div>

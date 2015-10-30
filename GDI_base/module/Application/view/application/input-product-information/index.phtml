@@ -1,0 +1,462 @@
+<?php
+    $form = $this->form;
+    $userInfo = $this->userInfo;
+    $controlno = $this->getHelperPluginManager()->getServiceLocator()->get('Application')->getMvcEvent()->getRequest()->getQuery('controlno');
+
+    //var_dump($tMarketProduct->getMarketProductId());
+    $controlId = null;
+    
+    /*if (!is_null($tMarketProduct->getProduct())) {
+        $controlId = $tMarketProduct->getProduct()->getControlId();
+    } else*/ if ($controlno) {
+        $controlId = $controlno;
+    }
+    
+    //var_dump($controlId);    
+    var_dump($this->form->getMessages());
+ ?>
+
+<div class="container">
+
+<?php $form->prepare(); ?>
+<?php  echo $this->form()->openTag($form) ?>
+
+<div class="row">
+    <h2> <?php echo $this->translate('Approved Publication') ?> </h2>
+    
+    <div class="box box-info">
+        <div class="col-md-6">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="control-no"><?php echo $this->translate('Control No') ?> <span>*</span></label>
+                    <?php echo $this->formInput($form->get('product')->get('controlId')); ?>
+                    <input type="hidden" name="product[productId]" required="required" id="control-no" class="form-control" value="<?php echo $tMarketProduct->getProductId() ?>">
+                    <?php echo $this->formElementErrors($form->get('product')->get('controlId')); ?>
+                </div>
+            </div>
+        </div>
+
+        <?php $url = $this->url('input-product-information', array('action' => 'createtab')); ?>
+
+        <?php if (!is_null( $controlId )): ?>
+        <div class="col-md-6">
+            <div class="box-body">
+                <a class="btn btn-primary pull-right" href="<?php echo $url.'?controlno='.$controlId ?>" role="button"><?php echo $this->translate('Market Localization') ?></a>
+            </div>
+        </div>
+        <?php endif; ?>
+
+    </div>
+</div>
+<div class="row">
+<div class="nav-tabs-custom">
+
+<?php echo $this->partial('tab.phtml', array(
+    'nav' => $nav,
+    )); 
+?>
+
+<div class="tab-content">
+<div class="active tab-pane" id="activity">
+
+<!--<form class="form-horizontal">-->
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box-body">
+            <div class="form-group <?php echo count($form->get('gvn')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="gdi-no"><?php echo $this->translate('Game Version No') ?></label>
+                <div class="col-sm-9">
+                    <?php //$form->get('submit')->setAttribute('value', 'Add'); ?>
+                    <?php echo $this->formInput($form->get('gvn')); ?>
+                    <?php echo $this->formElementErrors($form->get('gvn')); ?>
+                    <!--<div class="help-block with-errors">error Message</div> -->
+                </div>
+            </div>
+            <div class="form-group <?php echo count($form->get('title')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="title"><?php echo $this->translate('Title') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formInput($form->get('title')); ?>
+                    <?php echo $this->formElementErrors($form->get('title')); ?>
+                </div>
+            </div>
+            <div class="form-group <?php echo count($form->get('branch')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="developed-in"><?php echo $this->translate('Developed in') ?></label>
+                <div class="col-sm-9">
+                   <?php echo $this->formSelect($form->get('branch')); ?>
+                   <?php echo $this->formElementErrors($form->get('branch')); ?>
+                </div>
+            </div>
+            <div class="form-group <?php echo count($form->get('gameCategory')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="category"><?php echo $this->translate('Category') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formSelect($form->get('gameCategory')); ?>
+                    <?php echo $this->formElementErrors($form->get('gameCategory')); ?>
+                </div>
+            </div>
+            <div class="form-group <?php echo count($form->get('type')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="type"><?php echo $this->translate('Type') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formInput($form->get('type')); ?>
+                    <?php echo $this->formElementErrors($form->get('type')); ?>
+                </div>
+            </div>
+
+            <div class="form-group <?php echo count($form->get('overview')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="overview"><?php echo $this->translate('Overview') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formInput($form->get('overview')); ?>
+                    <?php echo $this->formElementErrors($form->get('overview')); ?>
+                </div>
+            </div>
+            <div class="form-group <?php echo count($form->get('eDevStartDate')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-4" for="dev-st"><?php echo $this->translate('Development Start') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-7">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('eDevStartDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('eDevStartDate')); ?>
+                    
+                   <!--  <div class="help-block with-errors">error Message</div> -->
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4" for="dev-fs"><?php echo $this->translate('Development Finish') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+
+                <div class="input-group col-sm-7">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('eDevFinishDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('eDevFinishDate')); ?>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-3" for="isactive"><?php echo $this->translate('Active') ?></label>
+                <div class="checkbox col-sm-9">
+                    <label>
+                        <?php echo $this->formCheckbox($form->get('isActive')); ?>
+                        <?php echo $this->formElementErrors($form->get('isActive')); ?>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group <?php echo count($form->get('platform')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="platform"><?php echo $this->translate('Platform') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formSelect($form->get('platform')); ?>
+                    <?php echo $this->formElementErrors($form->get('platform')); ?>
+                </div>
+            </div>
+
+            <div class="form-group <?php echo count($form->get('market')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="market"><?php echo $this->translate('Market') ?> <span>*</span></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formSelect($form->get('market')); ?>
+                    <?php echo $this->formElementErrors($form->get('market')); ?>
+                </div>
+            </div>
+
+            <div class="form-group <?php echo count($form->get('gameGroup')->getMessages()) > 0 ? 'alert alert-danger' : ''  ?>">
+                <label class="col-sm-3" for="group"><?php echo $this->translate('Group') ?> <span>*</span></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formSelect($form->get('gameGroup')); ?>
+                    <?php echo $this->formElementErrors($form->get('gameGroup')); ?>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3" for="target"><?php echo $this->translate('Target') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formInput($form->get('target')); ?>
+                    <?php echo $this->formElementErrors($form->get('target')); ?>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3" for="character"><?php echo $this->translate('Characteristics') ?></label>
+                <div class="col-sm-9">
+                    <?php echo $this->formInput($form->get('characteristics')); ?>
+                    <?php echo $this->formElementErrors($form->get('characteristics')); ?>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4" for="dev-rs"><?php echo $this->translate('Development Start') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+
+                <div class="input-group col-sm-7">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('rDevStartDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('rDevStartDate')); ?>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="dev-rs"><?php echo $this->translate('Development Finish') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-7 text-center">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('rDevFinishDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('rDevFinishDate')); ?>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <label class="col-sm-2 text-center" for="remarks"><?php echo $this->translate('Remarks') ?></label>
+    <div class="col-sm-10">
+        <?php echo $this->formTextarea($form->get('remarks')); ?>
+        <?php echo $this->formElementErrors($form->get('remarks')); ?>
+    </div>
+</div>
+
+<!-- jurisdiction product -->
+<div class="jur-prod"></div>
+
+
+
+<div class="row">
+    
+    <div class="box-header with-border">
+        <h3 class="box-title"><?php echo $this->translate('Sales Promotion') ?></h3>
+    </div><!-- /.box-header -->
+
+    <div class="col-md-6">
+
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-est"><?php echo $this->translate('Artwork (SP) Upload') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eArtworkSpDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eArtworkSpDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="gslick-est"><?php echo $this->translate('G-Slick Upload') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eGslickDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eGslickDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="demo-software-est"><?php echo $this->translate('Demo Software') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eDemoDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eDemoDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="movie-est"><?php echo $this->translate('Movie') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eMovieDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eMovieDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-tr-est"><?php echo $this->translate('Artwork (TR)') ?> <span class="small"><?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eArtworkTrDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eArtworkTrDate')); ?>
+
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="website-est"><?php echo $this->translate('Website') ?> <span class="small"> <?php echo $this->translate('(Estimated)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('eWebsiteDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('eWebsiteDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="game-img"><?php echo $this->translate('Game Image') ?></label>
+                <div class="col-sm-8">
+                    <?php echo $this->formFile($form->get('product')->get('gameImagePass')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('gameImagePass')); ?>
+                    <p class="help-block">Example block-level help text here.</p>
+                </div><!-- /.input group -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="box-body">
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-rest"><?php echo $this->translate('Artwork (SP) Upload') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rArtworkSpDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rArtworkSpDate')); ?>
+                    
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="gslick-rest"><?php echo $this->translate('G-Slick Upload') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rGslickDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rGslickDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="demo-software-rest"><?php echo $this->translate('Demo Software') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rDemoDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rDemoDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="movie-rest"><?php echo $this->translate('Movie') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rMovieDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rMovieDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="artwork-tr-rest"><?php echo $this->translate('Artwork (TR)') ?> <span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rArtworkTrDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rArtworkTrDate')); ?>
+
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="website-rest"><?php echo $this->translate('Website') ?><span class="small"><?php echo $this->translate('(Result)') ?> </span></label>
+                <div class="input-group col-sm-8">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <?php echo $this->formInput($form->get('product')->get('rWebsiteDate')); ?>
+                    <?php echo $this->formElementErrors($form->get('product')->get('rWebsiteDate')); ?>
+                </div><!-- /.input group -->
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4" for="return-soft-demo"><?php echo $this->translate('Return Demo Software') ?></label>
+                <div class="checkbox col-sm-8">
+                    <label>
+                        <?php echo $this->formCheckbox($form->get('product')->get('isReturnDemo')); ?>
+                        <?php echo $this->formElementErrors($form->get('product')->get('isReturnDemo')); ?>
+                    </label>
+                </div>
+
+                <!--  temporary -->
+                <?php echo $this->formHidden($form->get('product')->get('createUserId')->setAttribute('value',$userInfo['user_id'])); ?>
+                <?php echo $this->formHidden($form->get('product')->get('createTime')->setAttribute('value',new \DateTime() )); ?>
+                <?php echo $this->formHidden($form->get('product')->get('updateUserId')->setAttribute('value',$userInfo['user_id'] )); ?>
+                        
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box-footer">
+            <button class="btn btn-primary center-block" type="submit"><?php echo $this->translate('Save') ?></button>
+        </div>
+    </div>
+</div>
+<!-- </form> -->
+</div>
+<div class="tab-pane" id="timeline">
+    <p>same form?</p>
+</div>
+<div class="tab-pane" id="settings">
+    <p>same form</p>
+</div>
+</div>
+</div>
+</div>
+<?php // echo $this->formCollection($form); ?>
+
+<?php echo $this->form()->closeTag(); ?>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $('#market').on('change',function(){
+            var marketid = $(this).val();
+            getForm(marketid);
+        });
+
+        if ($('#market').val() > 0 ) {
+            console.log('his');
+            getForm($('#market').val());
+        }
+
+
+        function getForm(marketid) {
+            $.get("/input-product-information/getjurisdictionproductform", {
+                    marketid: marketid,
+                    marketproductId : '<?php echo $tMarketProduct->getMarketProductId() ?>' }, 
+                function(data) {  
+                    $('.jur-prod').html(data);
+                }
+            );
+        }
+
+    });
+</script>

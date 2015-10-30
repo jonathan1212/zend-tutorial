@@ -1,0 +1,13 @@
+
+<ul class="nav nav-tabs">
+    <!-- <li class="active"><a href="#activity" data-toggle="tab">15-S7-G05-00</a></li>
+    <li><a href="#timeline" data-toggle="tab">15-S7-G05-01</a></li>
+    <li><a href="#settings" data-toggle="tab">15-S7-G05-02</a></li> -->
+    
+    <?php foreach($nav as $each): ?>
+		<li class="<?php if ($each->isHighlighted()): ?> active <?php endif; ?>">
+			<a href="<?php echo $each->getUrl() ?>" data-toggle=""><?php echo $each->getTitle() ?></a>
+		</li>
+    
+	<?php endforeach; ?>
+</ul>

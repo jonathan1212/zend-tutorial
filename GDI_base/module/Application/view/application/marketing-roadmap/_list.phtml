@@ -1,0 +1,161 @@
+<?php $paging = $this->paginationHelper($marketproductList, $page, '/product-information', 10); ?>
+
+<table class="table table-hover table-condensed">
+	<tbody>
+		<thead class="text-center">
+        	<tr>
+          		<th colspan='13' style="text-align:center; background-color:#ECECEC;border-right:1px solid gainsboro">Product Status</th>
+          		<th colspan='6' style="text-align:center;background-color:#ECECEC">Sales Promotions</th>
+        	</tr>
+        </thead>
+
+		<tr>
+			<th>Request</th>
+			<th>Title</th>
+          	<th>Market</th>
+          	<th>Status</th>
+          	<th>Platform</th>
+          	<th>Category</th>
+          	<th>Development Start</th>
+          	<th>Development Finished</th>
+          	<th>Submission</th>
+          	<th>Regulator</th>
+          	<th>Approval</th>
+          	<th>Master Release</th>
+          	<th>Lauching</th>
+          	<th>Artwork Sales Promotions</th>
+          	<th>GSlick</th>
+          	<th>Demo Software</th>
+          	<th>Movie</th>
+          	<th>Artwork Training </th>
+          	<th>Website</th>
+		</tr>
+		<?php foreach ($marketproductList as $list): ?>
+				<?php $detailUrl = $this->url('product-information', array('action' => 'detail', 'id' => $list->getMarketProductId()), true) ?>
+				<?php $inputtab = $getEntityManager->getRepository('GDI\Entity\InputProductTab')->findOneBy(array('market_product_id' => $list->getMarketProductId() )); ?>
+				<?php $editUrl = $inputtab ? "/input-product-information/{$inputtab->getId()}?controlno={$inputtab->getControlNo()}&tabno={$inputtab->getTabNo()}" : ''; ?>
+			<tr>
+				<td>
+					<a href="<?php echo $editUrl ?>" title="Edit"><i class="fa fa-fw fa-pencil-square-o"></i></a>  
+				</td>
+
+				<td> <a href="<?php echo $detailUrl ?>"> <span class="label bg-aqua"><?php echo $list->getTitle() ?></span> </a></td>
+				<td><?php echo $list->getMarket()->getMarketName() ?></td>
+				<td> 
+					<?php if (!is_null($jp = $list->getOneJurisProductByCriterion()) ): ?>
+						<?php echo $jp->getStatus()->getStatusName() ?>	
+					<?php endif; ?>
+				</td>
+
+				<td><?php echo $list->getPlatform()->getPlatformName() ?></td>
+				<td><?php echo $list->getGameCategory()->getGameCategoryName() ?></td>
+				
+				<td>
+					<?php $devstart = $list->getDevStartStatus(); ?>	
+					<span class="label <?php echo $devstart['class'] ?>">
+					<?php echo $devstart['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $devfinish = $list->getDevFinishStatus(); ?>	
+					<span class="label <?php echo $devfinish['class'] ?>">
+					<?php echo $devfinish['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $submission = $list->getSubmission(); ?>	
+					<span class="label <?php echo $submission['class'] ?>">
+					<?php echo $submission['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $regulator = $list->getRegulator(); ?>	
+					<span class="label <?php echo $regulator['class'] ?>">
+					<?php echo $regulator['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $approval = $list->getApproval(); ?>	
+					<span class="label <?php echo $approval['class'] ?>">
+					<?php echo $approval['date']; ?>
+					</span>
+				</td>
+				
+				<td>
+					<?php $release = $list->getRelease(); ?>	
+					<span class="label <?php echo $release['class'] ?>">
+					<?php echo $release['date']; ?>
+					</span>
+				</td>
+				
+				<td>
+					<?php $launch = $list->getLaunch(); ?>	
+					<span class="label <?php echo $launch['class'] ?>">
+					<?php echo $launch['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $launch = $list->getLaunch(); ?>	
+					<span class="label <?php echo $launch['class'] ?>">
+					<?php echo $launch['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $artworksp = $list->getProduct()->getArtworkSpStatus(); ?>	
+					<span class="label <?php echo $artworksp['class'] ?>">
+					<?php echo $artworksp['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $gslick = $list->getProduct()->getGslickStatus(); ?>	
+					<span class="label <?php echo $gslick['class'] ?>">
+					<?php echo $gslick['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $demo = $list->getProduct()->getDemoeStatus(); ?>	
+					<span class="label <?php echo $demo['class'] ?>">
+					<?php echo $demo['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $movie = $list->getProduct()->getMovieStatus(); ?>	
+					<span class="label <?php echo $demo['class'] ?>">
+					<?php echo $demo['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $artworktr = $list->getProduct()->getArtworkTrStatus(); ?>	
+					<span class="label <?php echo $artworktr['class'] ?>">
+					<?php echo $artworktr['date']; ?>
+					</span>
+				</td>
+
+				<td>
+					<?php $website = $list->getProduct()->getWebsiteStatus(); ?>	
+					<span class="label <?php echo $website['class'] ?>">
+					<?php echo $website['date']; ?>
+					</span>
+				</td>
+
+			</tr>
+
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<div class="paging">
+    
+</div>
+
+<?php echo $paging; ?>

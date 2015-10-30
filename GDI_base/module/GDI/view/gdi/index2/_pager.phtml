@@ -1,0 +1,63 @@
+<?php if ($pages > 1): ?>
+
+<div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+
+<div class="row">
+	<div class="col-md-2">
+		<p>Show
+		<select class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+		Records</p>
+	</div>
+	
+	<div class="col-md-8 text-center">
+		<div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+			<ul class="pagination">
+				
+				<?php if ($current_page != 1) : ?>
+					<li class="paginate_button previous" id="example2_previous">
+						<a href="<?php echo $baseUrl. '?page=1' ?>" aria-controls="example2" data-dt-idx="0" tabindex="0">First</a>
+					</li>
+				<?php else: ?>
+					<li class="paginate_button previous disabled" id="example2_previous">
+						<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0">First</a>
+					</li>
+				<?php endif; ?>
+
+				<?php $pageCount = 1; ?>
+				<?php while ($pageCount <= $pages) : ?>
+					<li class="paginate_button <?php echo $pageCount == $current_page ? 'active' : '' ?>">
+						<a href="<?php echo $baseUrl .'?page='. $pageCount  ?>" aria-controls="example2" data-dt-idx="<?php echo $pageCount ?>" tabindex="0"> <?php echo $pageCount ?> </a>
+					</li>
+					<?php $pageCount++ ?>
+				<?php endwhile; ?>
+
+				<?php if ($current_page != $pages) : ?>				
+					<li class="paginate_button next" id="example2_next">
+						<a href="<?php echo $baseUrl .'?page='.$pages ?>" aria-controls="example2" data-dt-idx="" tabindex="">Last</a>
+					</li>
+				<?php else: ?>
+					<li class="paginate_button next disabled">
+						<a href="#" aria-controls="example2" data-dt-idx="" tabindex="">Last</a>
+					</li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-2">
+		Jump to
+		<select class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+		</select>
+		page
+	</div>
+</div>
+
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<?php
+
+echo $this->form()->openTag($form);
+
+$product = $form->get('marketProductJurisdiction');
+
+var_dump($product->get('jurisdictionProducts'));
+
+echo $this->formRow($product->get('name'));
+echo $this->formRow($product->get('price'));
+echo $this->formCollection($product->get('jurisdictionProducts'));
+
+
+/*echo $this->formHidden($form->get('csrf'));
+echo $this->formElement($form->get('submit'));*/
+
+echo $this->form()->closeTag();

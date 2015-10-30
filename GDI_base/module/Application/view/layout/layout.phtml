@@ -1,0 +1,94 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+        <?php echo $this->headTitle('Aruze '. $this->translate('Aruze Game Detail Information System '))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+        ->prependStylesheet($this->basePath('/css/custom.css'))
+        ->prependStylesheet($this->basePath('/css/admin-panel.css'))
+        ->prependStylesheet($this->basePath('/css/ionicons.min.css'))
+        ->prependStylesheet($this->basePath('/css/font-awesome.min.css'))
+        ->prependStylesheet($this->basePath('/css/bootstrap.min.css')) ?>
+        
+        <!-- script -->  
+        <?php
+		 echo $this->headScript()
+		       ->prependFile ( $this->basePath ( '/js/main.js' ) )
+		       ->prependFile ( $this->basePath ( '/js/bootstrap.min.js' ) )
+		       ->prependFile ( $this->basePath ( '/js/jQueryUI/jquery-ui.min.js' ) )
+		      ->prependFile ( $this->basePath ( '/js/jQuery/jQuery-2.1.4.min.js' ) );
+
+		 ?>
+
+
+    </head>
+<body class="hold-transition skin-blue skin-x sidebar-mini">
+	<div class="wrapper">
+		<header>
+			<img src="/img/logo.png" alt="" />
+
+			<div class="content-header">
+				<h1 class="text-center">
+					Aruze GDI System <small>Version 1.0</small>
+				</h1>
+			</div>
+			<nav style="display:none">
+				<ul class="nav nav-pills container" role="tablist">
+					<li role="presentation" class="active"><a href="product-list.html"
+						title="Product Information List"> <i class="fa fa-dashboard"></i><br />Product
+							Information&nbsp;List
+					</a></li>
+					<li role="presentation"><a href="approval_status_summary.html"
+						title="Approval Status Summary"><i class="fa fa-envelope"></i><br />Approval
+							Status&nbsp;Summary</a></li>
+					<li role="presentation"><a href="marketing-roadmap.html"
+						title="Marketing Roadmap"> <i class="fa fa-pie-chart"></i><br />Marketing
+							Roadmap
+					</a></li>
+					<li role="presentation"><a href="master-schedule.html"
+						title="Master Schedule"><i class="fa fa-dashboard"></i><br />Master
+							Schedule</a></li>
+					<li role="presentation"><a href="product-input.html"
+						title="Input Product Information"> <i class="fa fa-pie-chart"></i><br />Input
+							Product Information
+					</a></li>
+					<li role="presentation"><a href="approve-publication.html"
+						title="Approve Publication"> <i class="fa fa-pie-chart"></i><br />Approve
+							Publication
+					</a></li>
+					<li role="presentation"></li>
+					<li role="presentation"><a href="my-page.html" title="My Page"> <i
+							class="fa fa-pie-chart"></i><br />My Page
+					</a></li>
+					<li role="presentation"><a href="login.html" title="Log out"> <i
+							class="fa fa-pie-chart"></i><br />Logout
+					</a></li>
+				</ul>
+			</nav>
+			 <?php echo $this->navigation('navigation')->menu()->setPartial('application/headermenuLayout'); ?>
+			
+		</header>
+		<section class="content container">
+
+		 <?php echo $this->content; ?>
+           
+		</section>
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 0.1
+			</div>
+			<strong>Copyright &copy; 2015-2016 <a
+				href="http://go.aruzegaming.com">Aruze Gaming GDI System</a>.
+			</strong> All rights reserved.
+		</footer>
+	</div>
+    </body>
+</html>

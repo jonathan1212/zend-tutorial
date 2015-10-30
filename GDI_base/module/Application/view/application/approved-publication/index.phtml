@@ -1,0 +1,127 @@
+<?php
+	$product = $marketProduct->getProduct(); 
+	$jurisdictionProduct = $marketProduct->getTJurisdictionProductMarketProduct();
+	$editUrl = "/input-product-information/{$inputTab->getId()}?controlno={$inputTab->getControlNo()}&tabno={$inputTab->getTabNo()}";
+?>
+
+<div class="container">
+<div class="row">
+	<h2>Approved Publication</h2>
+
+	<a class="btn btn-primary text-right list-button pull-right" href=""> Approved </a>
+	<a class="btn btn-primary text-right list-button pull-right" href="<?php echo $editUrl ?>"> Edit </a>
+	
+	<div class="box box-info col-md-12">
+		<div class="box-header with-border col-md-6">
+			<div class="col-md-2 text-right">Edited By:</div>
+			<div class="col-md-4">Daisyun Inamoto</div>
+			<div class="col-md-3 text-right">Edited Date:</div>
+			<div class="col-md-3">10/09/2015</div>
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+</div>
+<div class="row approve-publication">
+	<div class="col-md-6 ">
+		<dl class="dl-horizontal">
+			<dt>Control No</dt>
+			<dd><?php echo $product->getControlId() ?></dd>
+
+			<dt>Title</dt>
+			<dd><?php echo $marketProduct->getTitle() ?></dd>
+		  
+			<dt>Developed In</dt>
+			<dd><?php echo $marketProduct->getBranch()->getBranchName() ?></dd>
+
+			<dt>Category</dt>
+			<dd><?php echo $marketProduct->getGameCategory()->getGameCategoryName() ?></dd>
+
+			<dt>Type</dt>
+			<dd><?php echo $marketProduct->getType() ?></dd>
+
+			<dt>Overview</dt>
+			<dd><?php echo $marketProduct->getOverview() ?></dd>
+
+			<dt>Development Start (Est)</dt>
+			<dd><?php echo $marketProduct->getEDevStartDate('m/d/Y') ?></dd>
+
+			<dt>Development Finish (Est)</dt>
+			<dd> <?php echo $marketProduct->getEDevFinishDate('m/d/Y') ?> </dd>
+		</dl>
+	</div>
+	<div class="col-md-6">
+		<dl class="dl-horizontal">
+			<dt>Game Version No.</dt>
+			<dd> <?php echo $marketProduct->getGvn() ?> </dd>
+			  
+			<dt>Platform</dt>
+			<dd><?php echo $marketProduct->getPlatform()->getPlatformName() ?></dd>
+			  
+			<dt>Market</dt>
+			<dd><?php echo $marketProduct->getMarket()->getMarketName() ?></dd>
+
+			<dt>Group</dt>
+			<dd><?php echo $marketProduct->getGameGroup()->getGameGroupName() ?></dd>
+
+			<dt>Target</dt>
+			<dd><?php echo $marketProduct->getTarget() ?></dd>
+
+			<dt>Characteristics</dt>
+			<dd><?php echo $marketProduct->getCharacteristics() ?></dd>
+
+			<dt>Development Start (Result)</dt>
+			<dd><?php echo $marketProduct->getRDevStartDate('m/d/Y') ?></dd>
+
+			<dt>Development Finish (Result)</dt>
+			<dd><?php echo $marketProduct->getRDevFinishDate('m/d/Y') ?></dd>
+		</dl>
+	</div>
+</div>
+<div class="row">  
+	<?php foreach($jurisdictionProduct as $jurProd): ?>
+	<?php // var_dump($jurProd->getRApprovalDate()); exit; ?>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading"><?php echo $jurProd->getJurisdiction()->getJurisdictionAbbr() ?></div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<dl class="dl-horizontal">
+							<dt>Submission(Est)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getESubmissionDate('m/d/Y') ?></dd>
+							  
+							<dt>Approval(Est)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getEApprovalDate('m/d/Y') ?> </dd>
+							  
+							<dt>MasterRelese(Est)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getEReleaseDate('m/d/Y') ?> </dd>
+
+							<dt>Launch(Est)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getELaunchDate('m/d/Y') ?> </dd>
+						</dl>
+					</div>
+					<div class="col-sm-6">
+						<dl class="dl-horizontal">
+							<dt>Submission(Result)</dt>
+							<dd class="dd120"><?php echo $jurProd->getRSubmissionDate('m/d/Y') ?> </dd>
+							  
+							<dt>Approval(Result)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getRApprovalDate('m/d/Y') ?> </dd>
+							  
+							<dt>MasterRelese(Result)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getRReleaseDate('m/d/Y') ?> </dd>
+
+							<dt>Launch(Result)</dt>
+							<dd class="dd120"> <?php echo $jurProd->getRLaunchDate('m/d/Y') ?> </dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end of CA -->
+	</div>
+<?php endforeach; ?>
+</div><!-- end of row -->
+
+    
+
+</div>

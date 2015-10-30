@@ -1,0 +1,70 @@
+<?php
+
+$form = $this->form;
+$tProductForm = $this->tProductForm;
+
+//$form->setAttribute('action', $this->url('gdi/add',array(),true ));
+
+var_dump($this->form->getMessages());
+var_dump($this->tProductForm->getMessages());
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('gvn'));
+echo $this->formRow($form->get('title'));
+echo $this->formRow($form->get('branch'));
+
+echo $this->formRow($form->get('gameCategory'));
+
+echo $this->formRow($form->get('type'));
+echo $this->formRow($form->get('overview'));
+echo $this->formRow($form->get('eDevStartDate'));
+echo $this->formRow($form->get('eDevFinishDate'));
+
+echo $this->formRow($form->get('remarks'));
+echo $this->formRow($form->get('isActive'));
+echo $this->formRow($form->get('platform'));
+echo $this->formRow($form->get('market'));
+echo $this->formRow($form->get('gameGroup'));
+echo $this->formRow($form->get('target'));
+echo $this->formRow($form->get('characteristics'));
+echo $this->formRow($form->get('rDevStartDate'));
+echo $this->formRow($form->get('eDevFinishDate'));
+
+echo $this->formRow($form->get('isDeleted'));
+
+
+// new one
+echo "<br/> <br/>";
+echo $this->formRow($tProductForm->get('controlId'));
+echo $this->formRow($tProductForm->get('gameImagePass'));
+echo $this->formRow($tProductForm->get('eArtworkSpDate'));
+echo $this->formRow($tProductForm->get('eGslickDate'));
+echo $this->formRow($tProductForm->get('eDemoDate'));
+echo $this->formRow($tProductForm->get('eMovieDate'));
+echo $this->formRow($tProductForm->get('eArtworkSpDate'));
+echo $this->formRow($tProductForm->get('eWebsiteDate'));
+echo $this->formRow($tProductForm->get('rArtworkSpDate'));
+echo $this->formRow($tProductForm->get('rGslickDate'));
+echo $this->formRow($tProductForm->get('rDemoDate'));
+echo $this->formRow($tProductForm->get('rMovieDate'));
+echo $this->formRow($tProductForm->get('rArtworkTrDate'));
+echo $this->formRow($tProductForm->get('rWebsiteDate'));
+echo $this->formRow($tProductForm->get('isReturnDemo'));
+
+
+//echo $this->formRow($form->get('gender'));
+
+//echo $this->formRow($form->get('subform')->get('email'));
+
+//echo $this->formRow($form->get('gameCategormForm')->get('gameCategoryName'));
+
+//echo $this->formRow($form->get('marketProductId'));
+
+//echo $this->formCollection($form);
+?>
+
+<button> save </button>
+<?php
+//echo $this->formCollection($form);
+echo $this->form()->closeTag();

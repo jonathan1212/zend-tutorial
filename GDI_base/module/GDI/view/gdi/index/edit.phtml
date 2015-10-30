@@ -1,0 +1,22 @@
+<?php
+
+$form = $this->form;
+//$form->setAttribute('action', $this->url('gdi/add',array(),true ));
+
+var_dump($this->form->getMessages());
+
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('title'));
+echo $this->formRow($form->get('gvn'));
+echo $this->formRow($form->get('type'));
+echo $this->formRow($form->get('market'));
+
+
+?>
+
+    <button> save </button>
+<?php
+//echo $this->formCollection($form);
+echo $this->form()->closeTag();

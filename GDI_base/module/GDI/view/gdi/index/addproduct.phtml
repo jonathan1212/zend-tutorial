@@ -1,0 +1,27 @@
+<?php
+$form = $this->form;
+
+$form->prepare();
+echo $this->form()->openTag($form);
+
+echo "<br/> <br/>";
+echo $this->formRow($form->get('controlId'));
+echo $this->formRow($form->get('gameImagePass'));
+echo $this->formRow($form->get('eArtworkSpDate'));
+echo $this->formRow($form->get('eGslickDate'));
+echo $this->formRow($form->get('eDemoDate'));
+echo $this->formRow($form->get('eMovieDate'));
+echo $this->formRow($form->get('eArtworkSpDate'));
+echo $this->formRow($form->get('eWebsiteDate'));
+echo $this->formRow($form->get('rArtworkSpDate'));
+echo $this->formRow($form->get('rGslickDate'));
+echo $this->formRow($form->get('rDemoDate'));
+echo $this->formRow($form->get('rMovieDate'));
+echo $this->formRow($form->get('rArtworkTrDate'));
+echo $this->formRow($form->get('rWebsiteDate'));
+
+?>
+<button>submit</button>
+<?php
+
+echo $this->form()->closeTag();
