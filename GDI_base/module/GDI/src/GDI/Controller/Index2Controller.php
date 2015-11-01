@@ -416,8 +416,21 @@ class Index2Controller extends AbstractActionController
     {
 
         $userForm = $this->getServiceLocator()->get('FormElementManager')->get('GDI\Form\TMarketProductForm');
-        $userForm->bind(new TMarketProduct());
+        
+        //$market = $this->getEntityManager()->find('GDI\Entity\MMarket', 1);
 
+   
+        //$tmarket = $this->getEntityManager()->find('GDI\Entity\TMarketProduct', 13);
+        $tmarket = new TMarketProduct();
+
+        /*$tmarket->setMarket($market);
+        $this->getEntityManager()->persist($tmarket);
+        $this->getEntityManager()->flush();
+*/        
+        //$tmarket->setProduct(new TProduct());
+        $userForm->bind($tmarket);
+
+        //var_dump($tmarket);exit;
 
         $request = $this->getRequest();
 
@@ -425,17 +438,26 @@ class Index2Controller extends AbstractActionController
         if ($request->isPost()) {
             $postParams = $request->getPost()->toArray();
             
+
             $post = array_merge_recursive(
                 $request->getPost()->toArray(),
                 $request->getFiles()->toArray()
             );
-         
-
+            
             $userForm->setData($post);
+
+            //$userForm->setData($post);
 
             if ($userForm->isValid()) {
                 
-                var_dump($userForm->getData());
+                //var_dump($tmarket);
+                var_dump('expression');
+                var_dump('ok');
+                //exit;
+                
+                $this->getEntityManager()->persist($tmarket);
+                $this->getEntityManager()->flush();
+
             }
         }
 

@@ -32,7 +32,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('product');
 
-        //$this->setObjectManager($objectManager);
+        $this->setObjectManager($objectManager);
 
         $this->setHydrator(new DoctrineHydrator($objectManager))
             ->setObject(new TProduct());
@@ -234,6 +234,16 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
                     array('name' => 'StripTags'), 
                     array('name' => 'StringTrim'), 
                 ),
+
+                'validators' => array(
+                    array(
+                        'name' => 'DoctrineModule\Validator\NoObjectExists',
+                        'options' => array(
+                            'object_repository' => $this->objectManager->getRepository('GDI\Entity\TProduct'),
+                            'fields' => 'controlId'
+                        )
+                    )
+                )
             ),
 
             'eArtworkSpDate' => array(
@@ -351,15 +361,20 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 
             'gameImagePass' => array(
                 'required' => false,
-                'allowEmpty' => true,
-                //'type' => 'Zend\InputFilter\FileInput',
+                //'allowEmpty' => true,
+                'type'       => 'Zend\InputFilter\FileInput',
                 'filters' => array( 
                     array(
                         'name' => "Zend\Filter\File\RenameUpload", 
                         'options' => array('target' => "./data/uploads/" , 'randomize' => true, 'use_upload_name' => true, 'use_upload_extension' => true )
-                    ), 
+                    ),
+                    array('name' => 'filelowercase'), 
                 ),
                 'validators' => array(
+                    /*array('name' => 'filesize', 'options' => array(
+                        'min' => 4000, 'max' => 5000,
+                    )),*/
+                    //array('name' => 'fileupload'),
                     array('name' => 'File\IsImage'),
                     //array('name' => 'File\UploadFile'),
                 ),

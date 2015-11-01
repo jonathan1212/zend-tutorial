@@ -66,22 +66,22 @@ class InputProductInformationController extends AbstractActionController{
         //$filter = $repository->getInputFilter();
         //$filter->add($tMarketProduct->getInputFilter());
 
-        $builder = new DoctrineAnnotationBuilder($this->getEntityManager());
-        //$form = $this->getServiceLocator()->get('FormElementManager')->get('GDI\Form\TMarketProductForm');
+        //$builder = new DoctrineAnnotationBuilder($this->getEntityManager());
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('GDI\Form\TMarketProductForm');
 
-        $form = $builder->createForm($tMarketProduct);
+        //$form = $builder->createForm($tMarketProduct);
 
        
-        $form->setAttribute('class','form-horizontal');
+        //$form->setAttribute('class','form-horizontal');
 
-        foreach ($form->getElements() as $element) {
+        /*foreach ($form->getElements() as $element) {
             if (method_exists($element, 'getProxy')) {
                 $proxy = $element->getProxy();
                 if (method_exists($proxy, 'setObjectManager')) {
                     $proxy->setObjectManager($this->getEntityManager());
                 }
             }
-        }
+        }*/
         //new AggregateHydrator()
         /*$hydrator = new AggregateHydrator(array(
             'GDI\Entity\TMarketProduct'       => new TMarketProduct(),
@@ -91,24 +91,24 @@ class InputProductInformationController extends AbstractActionController{
         var_dump($hydrator);
 
         exit;*/
-        $form->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'GDI\Entity\TMarketProduct'));
+        //$form->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'GDI\Entity\TMarketProduct'));
         $form->bind($tMarketProduct);
 
 
-        $storeOptions['find_method'] = array(
+        /*$storeOptions['find_method'] = array(
             'name' => 'findBy',
             'params' => array(
                 'criteria' => array(), // no criteria since I want the whole list
                 'orderBy' => array('marketName' => 'ASC'),
             ),
-        );
+        );*/
 
-        $form->get('market')->setOptions($storeOptions);
+        //$form->get('market')->setOptions($storeOptions);
 
         if (!$isNew) {
             $product = $tMarketProduct->getProduct();
             //$form->get('product')->get('controlId')->setAttributes(array('value'=> $product->getControlId() ));
-            $form->get('product')->get('eArtworkSpDate')->setAttributes(array('value'=> $product->getEArtworkSpDate() ));
+            /*$form->get('product')->get('eArtworkSpDate')->setAttributes(array('value'=> $product->getEArtworkSpDate() ));
             $form->get('product')->get('eGslickDate')->setAttributes(array('value'=> $product->getEGslickDate() ));
             $form->get('product')->get('eDemoDate')->setAttributes(array('value'=> $product->getEDemoDate() ));
             $form->get('product')->get('eMovieDate')->setAttributes(array('value'=> $product->getEMovieDate() ));
@@ -122,7 +122,7 @@ class InputProductInformationController extends AbstractActionController{
             $form->get('product')->get('rMovieDate')->setAttributes(array('value'=> $product->getRMovieDate() ));
             $form->get('product')->get('rArtworkTrDate')->setAttributes(array('value'=> $product->getRArtworkTrDate() ));
             $form->get('product')->get('rWebsiteDate')->setAttributes(array('value'=> $product->getRWebsiteDate() ));
-            $form->get('product')->get('isReturnDemo')->setAttributes(array('value'=> $product->getIsReturnDemo() ));
+            $form->get('product')->get('isReturnDemo')->setAttributes(array('value'=> $product->getIsReturnDemo() ));*/
         }
 
         $form->get('product')->get('controlId')->setAttributes(array('value'=> $controlno ));
@@ -149,6 +149,22 @@ class InputProductInformationController extends AbstractActionController{
             $post['product']['product_id'] = 28;*/
             //$post['product']['productId'] = 28;
 
+            $controlid = $post['product']['controlId'];
+            $post['product']['controlId'] = $controlid.'-0'.$tabno;
+
+            /*$img = $tMarketProduct->getProduct()->getGameImagePass();
+            if ($img) {
+                $post['product']['gameImagePass'] = $img;
+            } else {
+                unset($post['product']['gameImagePass']);
+            }*/
+
+            if (!$isNew) {
+                $image = $post['product']['gameImagePass'];
+                if (!$image) {
+                    unset($post['product']['gameImagePass']);
+                }
+            }
             $form->setData($post);
 
             /*var_dump($tMarketProduct->getProduct());
@@ -161,12 +177,6 @@ class InputProductInformationController extends AbstractActionController{
                 //$form->setHydrator(new DoctrineHydrator($this->getEntityManager(), 'GDI\Entity\TMarketProduct'));
                 //$form->bind($tMarketProduct);
                 
-                $img = $tMarketProduct->getProduct()->getGameImagePass();
-                if ($img) {
-                    $post['product']['gameImagePass'] = $img;
-                } else {
-                    unset($post['product']['gameImagePass']);
-                }
                 
                 /*if ($isNew) {
                     //$tMarketProduct->getProduct()->setControlId();
@@ -176,11 +186,11 @@ class InputProductInformationController extends AbstractActionController{
                     unset($post['product']['controlId']);
                 }*/
                 
-                $controlid = $post['product']['controlId'];
-                $post['product']['controlId'] = $controlid.'-0'.$tabno;
+                /*$controlid = $post['product']['controlId'];
+                $post['product']['controlId'] = $controlid.'-0'.$tabno;*/
 
-                $hydrator = new DoctrineHydrator($this->getEntityManager());
-                $tMarketProduct = $hydrator->hydrate($post, $tMarketProduct);
+                //$hydrator = new DoctrineHydrator($this->getEntityManager());
+                //$tMarketProduct = $hydrator->hydrate($post, $tMarketProduct);
 
 
                 $this->getEntityManager()->persist($tMarketProduct); //$form->getData()
@@ -261,7 +271,7 @@ class InputProductInformationController extends AbstractActionController{
                         $this->getEntityManager()->flush();
 
                         $this->flashMessenger()->addSuccessMessage("Successfully Saved");
-                        return $this->redirect()->toUrl('/input-product-information/'.$inputproduct_tab->getId().'?controlno='.$inputproduct_tab->getControlNo());
+                        return $this->redirect()->toUrl('/input-product-information/'.$inputproduct_tab->getId().'?controlno='.$inputproduct_tab->getControlNo().'&tabno='.$tabno);
                     }
 
                     //update tab

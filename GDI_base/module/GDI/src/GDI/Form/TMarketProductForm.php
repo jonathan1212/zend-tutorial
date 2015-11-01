@@ -30,21 +30,21 @@ class TMarketProductForm extends Form
 
     public function init()
     {
-        $this->setAttribute('method', 'post');
+        //$this->setAttribute('method', 'post');
         $this->setAttribute('class','form-horizontal');
 
         $this->setHydrator(new DoctrineHydrator($this->entityManager))
         ;
 
-       /* //marketProductId
+        //marketProductId
         $this->add(array(
-            'type' => 'Zend\Form\Element\Text',
+            'type' => 'Zend\Form\Element\Hidden',
             'name' => 'marketProductId',
             'attributes' => array(
                 'class' => 'form-control',
                 'id' => 'overview',
             ),
-        ));*/
+        ));
 
 
         // title
@@ -58,7 +58,7 @@ class TMarketProductForm extends Form
             ),
         ));
 
-        /*//market
+        //market
         $this->add(array(
             'name' => 'market',
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
@@ -231,7 +231,7 @@ class TMarketProductForm extends Form
 
         //remarks
         $this->add(array(
-            'type' => 'Zend\Form\Element\TextArea',
+            'type' => 'Zend\Form\Element\Text',
             'name' => 'remarks',
             'attributes' => array(
                 'class' => 'form-control',
@@ -278,16 +278,7 @@ class TMarketProductForm extends Form
                 'id' => 'dev-rs',
             ),
         ));
-
-        //rDevFinishDate
-        $this->add(array(
-            'name' => 'rDevFinishDate',
-            'type' => 'Zend\Form\Element\Date',
-            'attributes' => array(
-                'class' => 'form-control',
-                'id' => 'dev-rs',
-            ),
-        ));
+        
 
         //isActive
         $this->add(array(
@@ -330,14 +321,14 @@ class TMarketProductForm extends Form
         ));
 
         //jurisdictionProduct
-        $this->add(array(
+        /*$this->add(array(
             'name' => 'jurisdictionProductId',
             'type' => 'Zend\Form\Element\Text',
             'attributes' => array(
             ),
         ));*/
 
-       // $this->addProduct();
+       $this->addProduct();
     }
 
     protected function addProduct()
@@ -362,7 +353,7 @@ class TMarketProductForm extends Form
                     array('name' => 'StringTrim'), 
                 ),
             ),
-            /*'market' => array(
+            'market' => array(
                 'required' => true,
             ),
 
@@ -374,7 +365,7 @@ class TMarketProductForm extends Form
                 'required' => true,
             ),
 
-            'gamegroup' => array(
+            'gameGroup' => array(
                 'required' => true,
             ),
 
@@ -491,7 +482,7 @@ class TMarketProductForm extends Form
                 'validators' => array(),
             ),
 
-            'jurisdictionProductId' => array(
+            /*'jurisdictionProductId' => array(
                 'required' => false,
                 'validators' => array(),
             ),*/

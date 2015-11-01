@@ -935,11 +935,13 @@ class TMarketProduct
      *
      * @param \DateTime $createTime
      *
+     * @ORM\PrePersist()
+     *
      * @return TMarketProduct
      */
-    public function setCreateTime($createTime)
+    public function setCreateTime($createTime=null)
     {
-        $this->createTime = $createTime;
+        $this->createTime = new \DateTime();
 
         return $this;
     }
