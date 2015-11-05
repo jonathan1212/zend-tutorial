@@ -14,6 +14,8 @@ use Zend\View\Model\ViewModel;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Application\Entity\User;
+
+use Application\Entity\InsecureEntity;
      
 class IndexController extends AbstractActionController
 {
@@ -62,7 +64,9 @@ class IndexController extends AbstractActionController
 
             if ($userForm->isValid()) {
                 var_dump('expression');
-
+                var_dump('sd');
+                //exit;
+            
                 $this->getEm()->persist($user);
                 $this->getEm()->flush();
 
@@ -100,7 +104,7 @@ class IndexController extends AbstractActionController
         if ($request->isPost()) {
 
             $placeForm->setData($request->getPost());
-
+                            
             if ($placeForm->isValid()) {
                 var_dump('expression');
                 exit;
@@ -116,5 +120,25 @@ class IndexController extends AbstractActionController
         }
 
         return array('form' => $placeForm);
+    }
+
+
+    public function testAction()
+    {
+        $insecure = new InsecureEntity();
+        $insecure->fromArray(array('id' => 1, 'email' => 'antivojonathan@gmail.com', 'isAdmin' => true));
+    
+        var_dump($insecure);
+
+        /*foreach ($insecure as $key => $value) {
+            var_dump($key);
+            //var_dump($value->getEmail());
+        }*/
+        
+        $entityManager->persist($insecure);
+        $entityManager->flush();
+
+        var_dump($insecure->email);
+        exit;
     }
 }
